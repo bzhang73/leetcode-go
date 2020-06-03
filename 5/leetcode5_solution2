@@ -1,0 +1,21 @@
+func longestPalindrome(s string) string {
+    var max string
+    for i:=0; i < len(s); i++ {
+        max = maxPalindrome(s, i, i, max)
+        max = maxPalindrome(s, i, i+1, max)
+    }
+    return max
+}
+
+func maxPalindrome(s string, left, right int , max string) string {
+    var sub string
+    for left >=0 && right < len(s) && s[left] == s[right] {
+        sub = s[left:right+1]
+        left--
+        right++
+    }
+    if len(max) < len(sub) {
+        return sub
+    }
+    return max
+}
